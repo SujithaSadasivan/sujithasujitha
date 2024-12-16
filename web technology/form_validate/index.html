@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Registration Validation</title>
+    <style>
+        body{
+            background-color: gray;
+        }
+        .error {
+            border: 2px solid red;
+        }
+        .error-message {
+            color: red;
+            font-size: 0.9em;
+            margin-top: -10px;
+            margin-bottom: 10px;
+            display: none;
+        }
+    </style>
+    <script>
+        function validateField(input, condition, errorMessageId) {
+            const errorElement = document.getElementById(errorMessageId);
+            if (condition) {
+                input.classList.remove("error");
+                errorElement.style.display = "none";
+                return true;
+            } else {
+                input.classList.add("error");
+                errorElement.style.display = "block";
+                return false;
+            }
+        }
+        function validateForm() {
+            const firstName = document.getElementById("firstName");
+            const lastName = document.getElementById("lastName");
+            const password = document.getElementById("password");
+            const email = document.getElementById("email");
+            const phone = document.getElementById("phone");
+            const address = document.getElementById("address");
+            const isFirstNameValid = validateField(
+                firstName,
+                /^[a-zA-Z]{6,}$/.test(firstName.value.trim()),
+                "firstNameError"
+            );
+            const isLastNameValid = validateField(
+                lastName,
+                lastName.value.trim() !== "",
+                "lastNameError"
+            );
+            const isPasswordValid = validateField(
+                password,
+                password.value.trim().length >= 6,
+                "passwordError"
+            );
+            const isEmailValid = validateField(
+                email,
+                /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.value.trim()),
+                "emailError"
+            );
+            const isPhoneValid = validateField(
+                phone,
+                /^\d{10}$/.test(phone.value.trim()),
+                "phoneError"
+            );
+            const isAddressValid = validateField(
+                address,
+                address.value.trim() !== "",
+                "addressError"
+            );
+            return isFirstNameValid && isLastNameValid && isPasswordValid && isEmailValid && isPhoneValid && isAddressValid;
+        }
+    </script>
+</head>
+<body>
+    <h2>Registration Form</h2>
+    <form onsubmit="return validateForm()">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName">
+        <div id="firstNameError" class="error-message">First Name must contain at least 6 alphabets.</div>
+        <br><br>
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName">
+        <div id="lastNameError" class="error-message">Last Name cannot be empty.</div>
+        <br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password">
+        <div id="passwordError" class="error-message">Password must be at least 6 characters long.</div>
+        <br><br>
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email">
+        <div id="emailError" class="error-message">Enter a valid email address (e.g., name@domain.com).</div>
+        <br><br>
+        <label for="phone">Mobile Number:</label>
+        <input type="text" id="phone" name="phone">
+        <div id="phoneError" class="error-message">Phone number must contain exactly 10 digits.</div>
+        <br><br>
+        <label for="address">Address:</label><br><br>
+        <textarea id="address" name="address"></textarea><br>
+        <div id="addressError" class="error-message">Address cannot be empty.</div><br>
+        <br><br>
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html> 

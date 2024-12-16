@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE books SYSTEM "books.dtd">
+<books>
+    <book>
+        <title>XML Programming</title>
+        <author>John Doe</author>
+        <publisher>Tech Books</publisher>
+        <price>39.99</price>
+        <year>2023</year>
+    </book>
+    <book>
+        <title>Advanced XML</title>
+        <author>Jane Smith</author>
+        <publisher>Learning Press</publisher>
+        <price>49.99</price>
+        <year>2022</year>
+    </book>
+</books>
